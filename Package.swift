@@ -20,7 +20,7 @@ let package = Package(
 		.executableTarget(
 			name: "ExampleApp",
 			dependencies: [
-				//.product(name: "MQTTNIO", package: "mqtt-nio"),
+				.product(name: "MQTTNIO", package: "mqtt-nio"),
 			]
 		),
 	]
