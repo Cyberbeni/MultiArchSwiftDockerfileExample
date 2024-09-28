@@ -2,16 +2,10 @@ import Foundation
 import MQTTNIO
 
 // Set stdout to be line buffered
-#if canImport(Darwin)
-#elseif canImport(Musl)
-	import Musl
-	setlinebuf(stdout)
-#elseif canImport(Glibc)
-	import Glibc
-	// error: reference to var 'stdout' is not concurrency-safe because it involves shared mutable state
-	// setlinebuf(stdout)
-	#warning("print() output might be buffered")
+#if canImport(SwiftGlibc)
+	@preconcurrency import SwiftGlibc
 #endif
+setlinebuf(stdout)
 
 print("Hello world")
 print("Hello \(MQTTClient.self)")
