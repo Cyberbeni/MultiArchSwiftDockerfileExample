@@ -7,7 +7,6 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
-
 jobs:
   docker-push:
     runs-on: ubuntu-latest
