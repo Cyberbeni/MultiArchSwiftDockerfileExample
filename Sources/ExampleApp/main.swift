@@ -4,17 +4,18 @@ import MQTTNIO
 print("Hello world")
 print("Hello \(MQTTClient.self)")
 
-for aSignal in [
+let signalHandlers = [
 	SIGINT, // ctrl+C in interactive mode
 	SIGTERM, // docker container stop container_name
-] {
-	signal(aSignal, SIG_IGN)
-	let signalSource = DispatchSource.makeSignalSource(signal: aSignal, queue: .main)
+].map { signalName in
+	signal(signalName, SIG_IGN)
+	let signalSource = DispatchSource.makeSignalSource(signal: signalName, queue: .main)
 	signalSource.setEventHandler {
-		print("Got \(aSignal)")
+		print("Got signal: \(signalName)")
 		exit(0)
 	}
 	signalSource.resume()
+	return signalSource
 }
 
 RunLoop.main.run()
