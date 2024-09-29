@@ -4,4 +4,5 @@ This is an example on how to set up building a multi-architecture docker image u
 
 ## TODOs
 
-- TODO: use base docker image that already includes static Linux SDK, blocked by this issue: https://github.com/apple/swift-collections/issues/420
+- TODO: use base docker image that already includes static Linux SDK
+- TODO: add devcontainer configuration
