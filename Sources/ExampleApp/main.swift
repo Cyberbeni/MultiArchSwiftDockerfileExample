@@ -1,7 +1,7 @@
 import Foundation
 import MQTTNIO
 
-// Set stdout to be line buffered
+// Make sure print() output is instant
 #if canImport(SwiftGlibc)
 	@preconcurrency import SwiftGlibc
 #endif
@@ -18,6 +18,7 @@ let signalHandlers = [
 	let signalSource = DispatchSource.makeSignalSource(signal: signalName, queue: .main)
 	signalSource.setEventHandler {
 		print("Got signal: \(signalName)")
+		// Save state, close connections gracefully, etc.
 		exit(0)
 	}
 	signalSource.resume()
