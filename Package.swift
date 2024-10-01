@@ -21,6 +21,9 @@ let package = Package(
 			name: "ExampleApp",
 			dependencies: [
 				.product(name: "MQTTNIO", package: "mqtt-nio"),
+			],
+			swiftSettings: [
+				.unsafeFlags(["-warnings-as-errors"], .when(configuration: .release)),
 			]
 		),
 	]
