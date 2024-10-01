@@ -1,0 +1,38 @@
+{
+    // Template: https://github.com/swift-server/swift-devcontainer-template
+    "name": "Swift",
+    "image": "swift:6.0",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": "true",
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000",
+            "upgradePackages": "false"
+        },
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "os-provided",
+            "ppa": "false"
+        }
+    },
+    "runArgs": [
+        "--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined"
+    ],
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "lldb.library": "/usr/lib/liblldb.so"
+            },
+            "extensions": [
+                "sswg.swift-lang",
+                "timonwong.shellcheck"
+            ]
+        }
+    },
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    // "forwardPorts": [],
+
+    "remoteUser": "vscode"
+}
