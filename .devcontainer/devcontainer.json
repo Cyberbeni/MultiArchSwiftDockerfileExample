@@ -34,5 +34,6 @@
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": [],
 
-    "remoteUser": "vscode"
+    "remoteUser": "vscode",
+    "postStartCommand": "swift package resolve"
 }
