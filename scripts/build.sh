@@ -22,6 +22,6 @@ else
 		exit 1
 	fi
 fi
-BUILD_ARGS+=(--swift-sdk ${ARCH}-swift-linux-musl)
+BUILD_ARGS+=(--swift-sdk "${ARCH}-swift-linux-musl")
 
-swift build ${BUILD_ARGS[@]}
+swift build "${BUILD_ARGS[@]}"
