@@ -1,10 +1,9 @@
-name: Push tagged version to ghcr.io
+name: Push tagged version to container registry
 on:
   push:
     tags: [ 'v*.*.*' ]
 
 env:
-  REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
@@ -24,19 +23,22 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       # https://github.com/docker/login-action
-      - name: Log into ${{ env.REGISTRY }}
+      - name: Log in to ghcr.io
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Uploading to multiple registries can be done by having multiple "Log in" steps and adding multiple image names to the "Extract Docker metadata" step.
 
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: |
+            ghcr.io/${{ env.IMAGE_NAME }}
           tags: |
             type=semver,pattern=v{{version}}
             type=semver,pattern=v{{major}}
