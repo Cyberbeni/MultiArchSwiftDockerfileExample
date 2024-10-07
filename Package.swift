@@ -12,7 +12,7 @@ let package = Package(
 		),
 	],
 	dependencies: [
-		//.package(url: "https://github.com/swift-server-community/mqtt-nio", from: "2.11.0"),
+		// .package(url: "https://github.com/swift-server-community/mqtt-nio", from: "2.11.0"),
 		// Plugins:
 		.package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.54.5"),
 	],
@@ -20,7 +20,7 @@ let package = Package(
 		.executableTarget(
 			name: "ExampleApp",
 			dependencies: [
-				//.product(name: "MQTTNIO", package: "mqtt-nio"),
+				// .product(name: "MQTTNIO", package: "mqtt-nio"),
 			],
 			swiftSettings: [
 				.unsafeFlags(["-warnings-as-errors"], .when(configuration: .release)),
