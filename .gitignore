@@ -7,4 +7,5 @@
 .swiftpm/
 
 # VSCode
-.vscode/
+.vscode/*
+!.vscode/extensions.json
