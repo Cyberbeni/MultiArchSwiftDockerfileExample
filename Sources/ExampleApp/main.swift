@@ -1,5 +1,4 @@
 import Foundation
-import MQTTNIO
 
 // Make sure print() output is instant
 #if canImport(SwiftGlibc)
@@ -8,7 +7,7 @@ import MQTTNIO
 setlinebuf(stdout)
 
 print("Hello world")
-print("Hello \(MQTTClient.self)")
+print("This should be visible right after starting the application")
 
 let signalHandlers = [
 	SIGINT, // ctrl+C in interactive mode
