@@ -23,5 +23,5 @@ RUN --mount=type=cache,target=/workspace/.build,id=build-$TARGETPLATFORM \
 	cp .build/release/ExampleApp dist
 
 FROM scratch AS release
-COPY --from=build /workspace/dist/ExampleApp /usr/local/bin/app
-ENTRYPOINT ["/usr/local/bin/app"]
+COPY --from=build /workspace/dist/ExampleApp /usr/local/bin/swift-example
+ENTRYPOINT ["/usr/local/bin/swift-example"]
