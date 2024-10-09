@@ -1,10 +1,18 @@
 {
     // Template: https://github.com/swift-server/swift-devcontainer-template
     "name": "Swift",
-    "image": "swift:6.0",
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": ".",
+        "args": {
+            "SWIFT_VERSION": "latest"
+        }
+    },
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
             "installZsh": "true",
+            "configureZshAsDefaultShell": "true",
+            "username": "vscode",
             "upgradePackages": "false"
         },
         "ghcr.io/devcontainers/features/git:1": {
@@ -29,12 +37,7 @@
             ]
         }
     },
-
-    // The default swift docker image variant is built on Ubuntu, which creates the `ubuntu` user with uid:gid 1000:1000.
-    // We are using this user and updating its uid:gid to match the local user that is running the devcontainer,
-    // so that files created inside the devcontainer will belong to the local user.
-    "containerUser": "ubuntu",
-    "updateRemoteUserUID": true,
+    "containerUser": "vscode",
 
     // Automatically download all the dependencies when the devcontainer starts.
     "postStartCommand": "swift package resolve"
