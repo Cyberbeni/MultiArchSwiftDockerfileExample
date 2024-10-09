@@ -18,7 +18,7 @@ COPY ./Sources /workspace/Sources
 ARG TARGETPLATFORM
 RUN --mount=type=cache,target=/workspace/.build,id=build-$TARGETPLATFORM \
 	--mount=type=cache,target=/workspace/.spm-cache,id=spm-cache \
-	scripts/build.sh && \
+	scripts/build-release.sh && \
 	mkdir -p dist && \
 	cp .build/release/ExampleApp dist
 
