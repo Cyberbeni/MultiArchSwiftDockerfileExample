@@ -1,9 +1,9 @@
 import Foundation
-
-// Make sure print() output is instant
 #if canImport(SwiftGlibc)
 	@preconcurrency import SwiftGlibc
 #endif
+
+// Make sure print() output is instant
 setlinebuf(stdout)
 
 print("Hello world")
