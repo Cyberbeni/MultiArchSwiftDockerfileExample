@@ -5,7 +5,8 @@ set -eo pipefail
 pushd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null
 
 if which swift > /dev/null 2>&1; then
-	swift run swiftformat --cache ./.build/swiftformat-cache.json .
+	swift build --product swiftformat
+	./.build/debug/swiftformat --cache ./.build/swiftformat-cache.json .
 elif which docker > /dev/null 2>&1; then
 	docker run --rm \
 		--volume .:/workspace \
