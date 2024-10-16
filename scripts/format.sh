@@ -5,7 +5,7 @@ set -eo pipefail
 pushd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null
 
 if which swift > /dev/null 2>&1; then
-	swift package plugin --allow-writing-to-package-directory swiftformat
+	swift run swiftformat .
 elif which docker > /dev/null 2>&1; then
 	docker run --rm \
 		--volume .:/workspace \

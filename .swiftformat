@@ -1,5 +1,4 @@
 --swiftversion 6.0
---exclude Package.swift,Package@*.swift
 
 --maxwidth 200
 --indent tab
