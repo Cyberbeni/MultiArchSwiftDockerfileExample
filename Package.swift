@@ -24,6 +24,9 @@ let package = Package(
 			],
 			swiftSettings: [
 				.unsafeFlags(["-warnings-as-errors"], .when(configuration: .release)),
+			],
+			linkerSettings: [
+				.unsafeFlags(["-Xlinker", "-s"], .when(configuration: .release)),
 			]
 		),
 	]
