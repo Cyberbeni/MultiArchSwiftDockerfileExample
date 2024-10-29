@@ -13,7 +13,7 @@ elif which docker > /dev/null 2>&1; then
 	docker run --rm \
 		--volume .:/workspace \
 		--user "$(id -u):$(id -g)" \
-		swift:6.0.1 \
+		swift:6.0.2 \
 		/workspace/scripts/format.sh
 else
 	echo "Either 'swift' or 'docker' has to be installed to run swiftformat as an SPM plugin."

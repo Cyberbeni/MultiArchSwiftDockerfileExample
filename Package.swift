@@ -26,7 +26,7 @@ let package = Package(
 				.unsafeFlags(["-warnings-as-errors"], .when(configuration: .release)),
 			],
 			linkerSettings: [
-				.unsafeFlags(["-Xlinker", "-s"], .when(configuration: .release)),
+				.unsafeFlags(["-Xlinker", "-s"], .when(configuration: .release)), // STRIP_STYLE = all
 			]
 		),
 	]
