@@ -16,4 +16,4 @@ jobs:
       with:
         url: https://github.com/nicklockwood/SwiftFormat
     - name: Lint
-      run: swiftformat --lint .
+      run: swiftformat --lint --reporter github-actions-log .
