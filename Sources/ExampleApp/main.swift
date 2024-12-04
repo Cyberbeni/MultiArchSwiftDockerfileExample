@@ -9,6 +9,8 @@ setlinebuf(stdout)
 print("Hello world")
 print("This should be visible right after starting the application")
 
+func foo(bar: String) {}
+
 let signalHandlers = [
 	SIGINT, // ctrl+C in interactive mode
 	SIGTERM, // docker container stop container_name
