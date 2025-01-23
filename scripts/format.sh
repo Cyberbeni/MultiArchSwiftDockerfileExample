@@ -31,7 +31,13 @@ elif which docker > /dev/null 2>&1; then
 		--user "$(id -u):$(id -g)" \
 		swift:6.0.2 \
 		/workspace/scripts/format.sh
+elif which podman > /dev/null 2>&1; then
+	podman run --rm \
+		--volume .:/workspace \
+		--userns=keep-id \
+		docker.io/swift:6.0.2 \
+		/workspace/scripts/format.sh
 else
-	echo "Either 'swift' or 'docker' has to be installed to run swiftformat as an SPM plugin."
+	echo "Either 'swift', 'docker' or 'podman' has to be installed to run swiftformat."
 	exit 1
 fi
