@@ -29,7 +29,7 @@ elif which docker > /dev/null 2>&1; then
 	docker run --rm \
 		--volume .:/workspace \
 		--user "$(id -u):$(id -g)" \
-		swift:6.0.2 \
+		docker.io/swift:6.0.2 \
 		/workspace/scripts/format.sh
 elif which podman > /dev/null 2>&1; then
 	podman run --rm \
