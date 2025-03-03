@@ -30,13 +30,13 @@ elif which docker > /dev/null 2>&1; then
 		--volume .:/workspace \
 		--user "$(id -u):$(id -g)" \
 		docker.io/swift:6.0.2 \
-		/workspace/scripts/format.sh
+		"/workspace/scripts/$(basename "${BASH_SOURCE[0]}")"
 elif which podman > /dev/null 2>&1; then
 	podman run --rm \
 		--volume .:/workspace \
 		--userns=keep-id \
 		docker.io/swift:6.0.2 \
-		/workspace/scripts/format.sh
+		"/workspace/scripts/$(basename "${BASH_SOURCE[0]}")"
 else
 	echo "Either 'swift', 'docker' or 'podman' has to be installed to run swiftformat."
 	exit 1
