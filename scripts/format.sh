@@ -3,6 +3,7 @@
 set -eo pipefail
 
 pushd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null
+DOCKER_IMAGE="docker.io/swift:6.0.2"
 
 if which swift > /dev/null 2>&1; then
 	SWIFTFORMAT="./.build/debug/swiftformat"
@@ -29,13 +30,13 @@ elif which docker > /dev/null 2>&1; then
 	docker run --rm \
 		--volume .:/workspace \
 		--user "$(id -u):$(id -g)" \
-		docker.io/swift:6.0.2 \
+		"$DOCKER_IMAGE" \
 		"/workspace/scripts/$(basename "${BASH_SOURCE[0]}")"
 elif which podman > /dev/null 2>&1; then
 	podman run --rm \
 		--volume .:/workspace \
 		--userns=keep-id \
-		docker.io/swift:6.0.2 \
+		"$DOCKER_IMAGE" \
 		"/workspace/scripts/$(basename "${BASH_SOURCE[0]}")"
 else
 	echo "Either 'swift', 'docker' or 'podman' has to be installed to run swiftformat."
