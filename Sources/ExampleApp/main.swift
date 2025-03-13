@@ -3,12 +3,17 @@ import Foundation
 	@preconcurrency import SwiftGlibc
 #endif
 
+// NOTE: Not necessary when using Logging
+// https://github.com/apple/swift-log
 // Make sure print() output is instant
 setlinebuf(stdout)
 
 print("Hello world")
 print("This should be visible right after starting the application")
 
+// NOTE: If you are using ServiceLifecycle, delete this
+// https://github.com/swift-server/swift-service-lifecycle
+// Documentation: https://swiftpackageindex.com/swift-server/swift-service-lifecycle/main/documentation/servicelifecycle/how-to-adopt-servicelifecycle-in-libraries#Graceful-shutdown
 let signalHandlers = [
 	SIGINT, // ctrl+C in interactive mode
 	SIGTERM, // docker container stop container_name
