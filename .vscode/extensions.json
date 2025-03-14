@@ -1,6 +1,7 @@
 {
 	"recommendations": [
-		"sswg.swift-lang",
+		"editorconfig.editorconfig",
+		"swiftlang.swift-vscode",
 		"timonwong.shellcheck"
 	]
 }
