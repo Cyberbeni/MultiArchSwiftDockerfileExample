@@ -3,7 +3,7 @@
 set -eo pipefail
 
 pushd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null
-DOCKER_IMAGE="docker.io/swift:6.0.2"
+DOCKER_IMAGE="docker.io/swift:6.1.0"
 
 if which swift > /dev/null 2>&1; then
 	SWIFTFORMAT="./.build/debug/swiftformat"
