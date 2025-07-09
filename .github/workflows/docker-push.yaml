@@ -9,6 +9,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    uses: Cyberbeni/workflows/.github/workflows/docker-push.yml@master
+    uses: Cyberbeni/workflows/.github/workflows/docker-push.yml@testing
     with:
       image_name: ${{ github.repository }}
