@@ -12,3 +12,5 @@ jobs:
     uses: Cyberbeni/workflows/.github/workflows/docker-push.yml@testing
     with:
       image_name: ${{ github.repository }}
+      qemu: true
+      platforms: linux/arm64
