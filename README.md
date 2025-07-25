@@ -19,4 +19,3 @@ As of Swift 6.0.1, `Locale.current` is hardcoded to be `en_001` on Linux. Manual
 ## TODOs
 
 - TODO: Use base docker image that already includes static Linux SDK.
-- TODO: Don't depend on `Foundation`, importing `FoundationEssentials` instead would result in a smaller binary size. `RunLoop` and other useful classes, like `Process`, can only be accessed through `Foundation` currently.

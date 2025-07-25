@@ -1,3 +1,4 @@
+import Dispatch
 import Foundation
 #if canImport(SwiftGlibc)
 	@preconcurrency import SwiftGlibc
@@ -32,4 +33,6 @@ let signalHandlers = [
 	return signalSource
 }
 
+// NOTE: RunLoop is required for some classes, like Timer.
+// If you don't want to import Foundation (to decrease binary size), you can use `dispatchMain()`
 RunLoop.main.run()
