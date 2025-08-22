@@ -30,4 +30,4 @@ As of Swift 6.0.1, `Locale.current` is hardcoded to be `en_001` on Linux. Manual
 
 ## TODOs
 
-- TODO: Use base docker image that already includes static Linux SDK.
+- TODO: Use base docker image that already includes static Linux SDK. https://github.com/swiftlang/swift-docker/issues/480
