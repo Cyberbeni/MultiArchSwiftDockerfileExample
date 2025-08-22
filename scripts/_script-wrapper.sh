@@ -1,4 +1,5 @@
 #!/bin/false
+# shellcheck disable=SC1008
 
 # Don't call this script directly.
 # Usage from other scripts:
