@@ -1,11 +1,13 @@
 #!/bin/bash
 
 set -eo pipefail
-
 pushd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null
-DOCKER_IMAGE="docker.io/swift:6.1.0"
+SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
 
-if which swift > /dev/null 2>&1; then
+DOCKER_IMAGE="docker.io/swift:6.1.0"
+PROCESS="swift"
+
+do_it() {
 	SWIFTFORMAT="./.build/debug/swiftformat"
 	CACHE="./.build/swiftformat-cache.json"
 
@@ -26,19 +28,6 @@ if which swift > /dev/null 2>&1; then
 	"$SWIFTFORMAT" --cache "$CACHE" .
 	# https://github.com/nicklockwood/SwiftFormat/issues/1904
 	"$SWIFTFORMAT" --cache "$CACHE" --lint --lenient .
-elif which docker > /dev/null 2>&1; then
-	docker run --rm \
-		--volume .:/workspace \
-		--user "$(id -u):$(id -g)" \
-		"$DOCKER_IMAGE" \
-		"/workspace/scripts/$(basename "${BASH_SOURCE[0]}")"
-elif which podman > /dev/null 2>&1; then
-	podman run --rm \
-		--volume .:/workspace \
-		--userns=keep-id \
-		"$DOCKER_IMAGE" \
-		"/workspace/scripts/$(basename "${BASH_SOURCE[0]}")"
-else
-	echo "Either 'swift', 'docker' or 'podman' has to be installed to run swiftformat."
-	exit 1
-fi
+}
+
+source scripts/_script-wrapper.sh
