@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
 	name: "ExampleApp",
+	platforms: [.macOS(.v15)], // macOS version that corresponds with the "swift-tools-version", so no availability checks are required.
 	products: [
 		.executable(
 			name: "ExampleApp",
