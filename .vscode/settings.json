@@ -1,0 +1,6 @@
+{
+	"shellcheck.customArgs": [
+		"-x"
+	],
+	"shellcheck.useWorkspaceRootAsCwd": true
+}
