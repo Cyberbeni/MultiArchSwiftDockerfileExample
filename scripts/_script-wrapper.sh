@@ -18,21 +18,21 @@
 # source scripts/_script-wrapper.sh
 
 if [[ -n "$RUNNING_IN_CONTAINER" ]] || which "$PROCESS" > /dev/null 2>&1; then
-	do_it
+	do_it "$@"
 elif which docker > /dev/null 2>&1; then
 	docker run --rm \
 		--volume .:/workspace \
 		--user "$(id -u):$(id -g)" \
 		--env RUNNING_IN_CONTAINER=true \
 		"$DOCKER_IMAGE" \
-		"/workspace/scripts/$SCRIPT_NAME"
+		"/workspace/scripts/$SCRIPT_NAME" "$@"
 elif which podman > /dev/null 2>&1; then
 	podman run --rm \
 		--volume .:/workspace \
 		--userns=keep-id \
 		--env RUNNING_IN_CONTAINER=true \
 		"$DOCKER_IMAGE" \
-		"/workspace/scripts/$SCRIPT_NAME"
+		"/workspace/scripts/$SCRIPT_NAME" "$@"
 else
 	if [[ -n "$PROCESS" ]]; then
 		echo "Either '$PROCESS', 'docker' or 'podman' has to be installed to run this script."
