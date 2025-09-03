@@ -14,9 +14,6 @@ jobs:
       packages: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       # Set up BuildKit Docker container builder to be able to build multi-platform images
       # https://github.com/docker/setup-buildx-action
       - name: Set up Docker Buildx
@@ -55,3 +52,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           provenance: false
+
