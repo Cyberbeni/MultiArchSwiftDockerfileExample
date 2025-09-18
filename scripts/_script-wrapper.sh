@@ -33,11 +33,18 @@ elif which podman > /dev/null 2>&1; then
 		--env RUNNING_IN_CONTAINER=true \
 		"$DOCKER_IMAGE" \
 		"/workspace/scripts/$SCRIPT_NAME" "$@"
+elif which container > /dev/null 2>&1; then
+	container system start
+	container run --rm \
+		--volume "$PWD":/workspace \
+		--env RUNNING_IN_CONTAINER=true \
+		"$DOCKER_IMAGE" \
+		"/workspace/scripts/$SCRIPT_NAME" "$@"
 else
 	if [[ -n "$PROCESS" ]]; then
-		echo "Either '$PROCESS', 'docker' or 'podman' has to be installed to run this script."
+		echo "Either '$PROCESS', 'docker', 'podman' or 'container' has to be installed to run this script."
 	else
-		echo "Either 'docker' or 'podman' has to be installed to run this script."
+		echo "Either 'docker', 'podman' or 'container' has to be installed to run this script."
 	fi
 	exit 1
 fi
