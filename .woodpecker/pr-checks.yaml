@@ -4,7 +4,7 @@ labels:
 when:
   - event: pull_request
   - event: push
-    branch: master
+    branch: ${CI_REPO_DEFAULT_BRANCH}
 
 steps:
   - name: Update CI scripts
