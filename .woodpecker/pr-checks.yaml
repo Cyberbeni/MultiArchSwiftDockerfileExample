@@ -1,5 +1,5 @@
 labels:
-  - backend: local
+  backend: local
 
 when:
   - event: pull_request
