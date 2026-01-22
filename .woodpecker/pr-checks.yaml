@@ -3,6 +3,9 @@ when:
   - event: push
     #branch: master
 
+workspace:
+  path: project
+
 steps:
   - name: Update CI scripts
     image: bash
