@@ -8,6 +8,20 @@ DOCKER_IMAGE="docker.io/swift:6.2.3"
 PROCESS="swift"
 
 do_it() {
+	DO_LINT=0
+	while [[ $# -gt 0 ]]; do
+		case $1 in
+			--lint)
+				DO_LINT=1
+				shift
+				;;
+			*)
+      		echo "Unknown option $1"
+      		exit 1
+				;;
+		esac
+	done
+
 	SWIFTFORMAT="./.build/debug/swiftformat"
 	CACHE="./.build/swiftformat-cache.json"
 
@@ -25,9 +39,13 @@ do_it() {
 		swift build --product swiftformat
 		touch "$SWIFTFORMAT"
 	fi
-	"$SWIFTFORMAT" --cache "$CACHE" .
-	# https://github.com/nicklockwood/SwiftFormat/issues/1904
-	"$SWIFTFORMAT" --cache "$CACHE" --lint --lenient .
+	if (( DO_LINT != 0 )); then
+		"$SWIFTFORMAT" --cache "$CACHE" --lint .
+	else
+		"$SWIFTFORMAT" --cache "$CACHE" .
+		# https://github.com/nicklockwood/SwiftFormat/issues/1904
+		"$SWIFTFORMAT" --cache "$CACHE" --lint --lenient .
+	fi
 }
 
 source scripts/_script-wrapper.sh
