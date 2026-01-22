@@ -4,7 +4,7 @@ labels:
 when:
   - event: pull_request
   - event: push
-    #branch: master
+    branch: master
 
 steps:
   - name: Update CI scripts
