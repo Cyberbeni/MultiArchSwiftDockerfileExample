@@ -1,7 +1,16 @@
-import Dispatch
-import Foundation
-#if canImport(SwiftGlibc)
-	@preconcurrency import SwiftGlibc
+#if canImport(FoundationEssentials)
+	import Dispatch
+	import FoundationEssentials
+#else
+	import Foundation
+#endif
+
+#if canImport(Darwin)
+	import Darwin
+#elseif canImport(Musl)
+	import Musl
+#elseif canImport(Glibc)
+	@preconcurrency import Glibc
 #endif
 
 // NOTE: Not necessary when using Logging
@@ -34,5 +43,5 @@ let signalHandlers = [
 }
 
 // NOTE: RunLoop is required for some classes, like Timer.
-// If you don't want to import Foundation (to decrease binary size), you can use `dispatchMain()`
-RunLoop.main.run()
+// If you or any dependency import Foundation, use `RunLoop.main.run()` instead.
+dispatchMain()
