@@ -18,14 +18,13 @@ steps:
       git -C /home/ci/ci-runner/scripts fetch
       git -C /home/ci/ci-runner/scripts checkout master
       git -C /home/ci/ci-runner/scripts merge --ff-only
-  - name: Prepare
+  - name: Calculate tags
     image: bash
     commands: |
       /home/ci/ci-runner/scripts/docker/prepare.sh
   - name: Build and push Docker image
     image: plugin-docker-buildx
     settings:
-      dry_run: true
       logins:
         - registry: docker.io
           username:
@@ -36,7 +35,3 @@ steps:
       platforms: linux/amd64,linux/arm64
       auto_tag: true
       no_cache: true
-  # - name: Cleanup
-  #   image: bash
-  #   commands: |
-  #     /home/ci/ci-runner/scripts/docker/cleanup.sh
