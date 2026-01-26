@@ -2,6 +2,7 @@
 	"recommendations": [
 		"editorconfig.editorconfig",
 		"swiftlang.swift-vscode",
-		"timonwong.shellcheck"
+		"timonwong.shellcheck",
+		"redhat.vscode-yaml"
 	]
 }
