@@ -33,5 +33,4 @@ steps:
             from_secret: DOCKERHUB_PASSWORD
       repo: *IMAGE_NAME
       platforms: linux/amd64,linux/arm64
-      auto_tag: true
       no_cache: true
