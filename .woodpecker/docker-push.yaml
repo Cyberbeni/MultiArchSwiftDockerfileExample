@@ -21,7 +21,7 @@ steps:
   - name: Calculate tags
     image: bash
     commands: |
-      /home/ci/ci-runner/scripts/docker/prepare.sh
+      /home/ci/ci-runner/scripts/docker/calculate-tags.sh
   - name: Build and push Docker image
     image: plugin-docker-buildx
     settings:
