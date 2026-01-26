@@ -15,8 +15,3 @@ Supporting different time zones requires the `tzdata` package. By default this t
 ## Locale support
 
 As of Swift 6.0.1, `Locale.current` is hardcoded to be `en_001` on Linux. Manually passing a `Locale` instance to everything that uses it seems to be the only solution for using a custom `Locale` currently.
-
-## TODOs
-
-- Use base docker image that already includes static Linux SDK. https://github.com/swiftlang/swift-docker/issues/480
-- Set up CI for Codeberg
