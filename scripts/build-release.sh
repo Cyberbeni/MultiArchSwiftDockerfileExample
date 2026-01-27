@@ -12,7 +12,13 @@ BUILD_ARGS=(
 if [[ -z "$TARGETPLATFORM" ]]; then
 	ARCH="$(uname -m)"
 else
-	BUILD_ARGS+=(--cache-path /workspace/.spm-cache)
+	BUILD_ARGS+=(
+		--cache-path /workspace/.spm-cache
+		--only-use-versions-from-resolved-file
+		--skip-update
+		# store manifest generated during `swift build` in .build instead of .spm-cache
+		--manifest-cache local
+	)
 	if [[ "$TARGETPLATFORM" = "linux/amd64" ]]; then
 		ARCH="x86_64"
 	elif [[ "$TARGETPLATFORM" = "linux/arm64" ]]; then
