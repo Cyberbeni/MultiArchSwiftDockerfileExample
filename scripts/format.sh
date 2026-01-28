@@ -26,8 +26,10 @@ do_it() {
 	CACHE="./.build/swiftformat-cache.json"
 
 	# Replicate `make` behaviour in docker, `swift build` can easily take 5+ seconds even when no operations are needed.
+	# CI will always do fresh clone, so Package.swift/resolved will always be newer than the cache unless we are running parallel jobs.
+	# And since we might restore a cache from a different Package.resolved, we want to ensure build is up to date in this case too.
 	NEEDS_REBUILD=1
-	if which stat > /dev/null 2>&1 && [ -f "$SWIFTFORMAT" ]; then
+	if [ -z "$CI" ] && which stat > /dev/null 2>&1 && [ -f "$SWIFTFORMAT" ]; then
 		PRODUCT_MTIME=$(stat -c %Y "$SWIFTFORMAT")
 		PACKAGE_SWIFT_MTIME=$(stat -c %Y "./Package.swift")
 		PACKAGE_RESOLVED_MTIME=$(stat -c %Y "./Package.resolved")
