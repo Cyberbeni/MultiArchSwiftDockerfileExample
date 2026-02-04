@@ -6,6 +6,6 @@
 
 --enable isEmpty
 
---disable conditionalAssignment, wrapFunctionBodies, wrapPropertyBodies
+--disable conditionalAssignment, wrapFunctionBodies, wrapPropertyBodies, docComments
 
 --lintonly unusedArguments
