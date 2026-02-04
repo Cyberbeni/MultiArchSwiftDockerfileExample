@@ -2,9 +2,10 @@
 
 --maxwidth 140
 --indent tab
+--tabwidth 3
 
 --enable isEmpty
 
---disable conditionalAssignment
+--disable conditionalAssignment, wrapFunctionBodies, wrapPropertyBodies
 
 --lintonly unusedArguments
