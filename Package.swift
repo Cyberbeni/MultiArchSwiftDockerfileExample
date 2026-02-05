@@ -24,6 +24,7 @@ let package = Package(
 				// .product(name: "MQTTNIO", package: "mqtt-nio"),
 			],
 			swiftSettings: [
+				.unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
 				.unsafeFlags(["-warnings-as-errors"], .when(configuration: .release)),
 				.enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 			],
