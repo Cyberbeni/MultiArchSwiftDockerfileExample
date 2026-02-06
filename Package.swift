@@ -26,7 +26,8 @@ let package = Package(
 			swiftSettings: [
 				.unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
 				.unsafeFlags(["-warnings-as-errors"], .when(configuration: .release)),
-				.enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+				// This can cause errors when your dependencies don't have it enabled:
+				// .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 			],
 			linkerSettings: [
 				.unsafeFlags(["-Xlinker", "-s"], .when(configuration: .release)), // STRIP_STYLE = all
