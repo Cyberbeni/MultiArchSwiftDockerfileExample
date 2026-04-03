@@ -9,7 +9,7 @@
 # SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
 #
 # DOCKER_IMAGE="docker.io/cyberbeni/swift-builder:latest"
-# PROCESS="swift" # can be an empty string if always have to be run inside container
+# PROCESS="swift jq" # can be an empty string if always have to be run inside container
 #
 # do_it() {
 # 	echo "add script here"
