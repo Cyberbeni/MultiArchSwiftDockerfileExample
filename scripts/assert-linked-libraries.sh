@@ -5,10 +5,10 @@ pushd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null
 SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
 
 DOCKER_IMAGE="docker.io/cyberbeni/swift-builder:latest"
-PROCESS="swift ldd jq"
+PROCESS="swift ldd"
 
 do_it() {
-	APPS=$(swift package dump-package | jq -r '.products[] | select(.type | has("executable")) | .name')
+	APPS=$(swift package show-executables | grep -v '(')
 	LIBS=(
 		Foundation
 		FoundationInternationalization
