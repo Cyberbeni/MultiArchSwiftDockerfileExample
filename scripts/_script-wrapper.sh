@@ -17,7 +17,7 @@
 #
 # source scripts/_script-wrapper.sh
 
-if [[ -n "$RUNNING_IN_CONTAINER" ]] || which "$PROCESS" > /dev/null 2>&1; then
+if [[ -n "$RUNNING_IN_CONTAINER" ]] || which $PROCESS > /dev/null 2>&1; then
 	do_it "$@"
 elif which docker > /dev/null 2>&1; then
 	docker run --rm \
