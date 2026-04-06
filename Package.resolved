@@ -1,13 +1,13 @@
 {
-  "originHash" : "440c813056d51b9fba0fcd8aa9e5b3551cf8fb7f10ad8adbbf889cdef3b9ab55",
+  "originHash" : "54179bcd60b0d53716316f360f1b6898620075580941e0ac0f12e46ee64091ed",
   "pins" : [
     {
       "identity" : "swiftformat-mirror",
       "kind" : "remoteSourceControl",
       "location" : "https://codeberg.org/Cyberbeni/SwiftFormat-mirror",
       "state" : {
-        "revision" : "af6d5e684e6b003ea8b1ce433914eb8435fc42bf",
-        "version" : "0.59.1"
+        "revision" : "c6a7e248492157daba97d3460e909d40a5a0ca31",
+        "version" : "0.60.1"
       }
     }
   ],

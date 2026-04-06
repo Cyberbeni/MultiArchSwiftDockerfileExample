@@ -13,15 +13,13 @@ let package = Package(
 		),
 	],
 	dependencies: [
-		// .package(url: "https://github.com/swift-server-community/mqtt-nio", from: "2.11.0"),
 		// Plugins:
-		.package(url: "https://codeberg.org/Cyberbeni/SwiftFormat-mirror", from: "0.59.1"),
+		.package(url: "https://codeberg.org/Cyberbeni/SwiftFormat-mirror", from: "0.60.1"),
 	],
 	targets: [
 		.executableTarget(
 			name: "ExampleApp",
 			dependencies: [
-				// .product(name: "MQTTNIO", package: "mqtt-nio"),
 			],
 			swiftSettings: [
 				.unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),

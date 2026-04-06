@@ -1,4 +1,4 @@
---swiftversion 6.0
+--swiftversion 6.2
 
 --maxwidth 140
 --indent tab
@@ -6,6 +6,6 @@
 
 --enable isEmpty
 
---disable conditionalAssignment, wrapFunctionBodies, wrapPropertyBodies, docComments
+--disable conditionalAssignment, wrapFunctionBodies, wrapPropertyBodies, docComments, swiftTestingTestCaseNames
 
 --lintonly unusedArguments
