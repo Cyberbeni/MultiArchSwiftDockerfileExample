@@ -9,7 +9,7 @@ let package = Package(
 	products: [
 		.executable(
 			name: "ExampleApp",
-			targets: ["ExampleApp"]
+			targets: ["ExampleApp"],
 		),
 	],
 	dependencies: [
@@ -29,7 +29,7 @@ let package = Package(
 			],
 			linkerSettings: [
 				.unsafeFlags(["-Xlinker", "-s"], .when(configuration: .release)), // STRIP_STYLE = all
-			]
+			],
 		),
-	]
+	],
 )
