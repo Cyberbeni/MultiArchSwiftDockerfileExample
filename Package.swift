@@ -23,7 +23,7 @@ let package = Package(
 			],
 			swiftSettings: [
 				.unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
-				.unsafeFlags(["-warnings-as-errors"], .when(configuration: .release)),
+				.treatAllWarnings(as: .error, .when(configuration: .release)),
 				// This can cause errors when your dependencies don't have it enabled:
 				// .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 			],
