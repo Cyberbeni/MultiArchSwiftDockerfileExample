@@ -4,7 +4,7 @@
 
 # SPM
 .build/
-.swiftpm/
+.swiftpm/xcode
 
 # VSCode
 .vscode/*
