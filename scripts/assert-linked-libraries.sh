@@ -4,7 +4,7 @@ set -eo pipefail
 pushd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null
 SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
 
-DOCKER_IMAGE="docker.io/cyberbeni/swift-builder:latest"
+DOCKER_IMAGE="docker.io/swift:latest"
 PROCESS="swift ldd"
 
 do_it() {

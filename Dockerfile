@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM docker.io/cyberbeni/swift-builder:latest AS swift-build
+FROM --platform=$BUILDPLATFORM docker.io/cyberbeni/swift-builder:latest-musl-allocator AS swift-build
 WORKDIR /workspace
 COPY ./Package.swift ./Package.resolved /workspace/
 RUN --mount=type=cache,target=/workspace/.spm-cache,id=spm-cache \
