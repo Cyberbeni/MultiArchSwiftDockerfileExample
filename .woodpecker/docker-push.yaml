@@ -26,6 +26,10 @@ steps:
     image: plugin-docker-buildx
     settings:
       logins:
+        - registry: codeberg.org
+          username: ${CI_REPO_OWNER}
+          password:
+            from_secret: PACKAGE_REGISTRY_ACCESS_TOKEN
         - registry: docker.io
           username:
             from_secret: DOCKERHUB_USER
