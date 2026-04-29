@@ -1,6 +1,6 @@
 variables:
   - &IMAGE_NAME
-    - "codeberg.org/${CI_REPO_OWNER}/multi-arch-swift-dockerfile-example"
+    - "codeberg.org/cyberbeni/multi-arch-swift-dockerfile-example"
     - "docker.io/cyberbeni/multi-arch-swift-dockerfile-example"
 
 labels:
