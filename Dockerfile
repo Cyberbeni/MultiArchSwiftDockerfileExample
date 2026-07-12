@@ -1,7 +1,9 @@
 FROM --platform=$BUILDPLATFORM codeberg.org/cyberbeni/swift-builder:latest-musl-allocator AS swift-build
+ARG BUILDPLATFORM
 WORKDIR /workspace
 COPY ./Package.swift ./Package.resolved /workspace/
-RUN --mount=type=cache,target=/workspace/.spm-cache,id=spm-cache \
+RUN --mount=type=cache,target=/workspace/.build,id=build-$BUILDPLATFORM \
+	--mount=type=cache,target=/workspace/.spm-cache,id=spm-cache \
 	swift package \
 		--cache-path /workspace/.spm-cache \
 		--only-use-versions-from-resolved-file \
