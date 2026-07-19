@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eo pipefail
+set -euo pipefail
 pushd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null
 
 ## TODO: executalbe/library
@@ -11,8 +11,18 @@ pushd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null
 
 ## TODO: project name
 
-## TODO: license
+## License
+YEAR=$(date +%Y)
+NAME=$(git config --get user.name)
+sed -i "s#__YEAR__#${YEAR}#" ./template/LICENSE.md
+sed -i "s#__NAME__#${NAME}#" ./template/LICENSE.md
+rm UNLICENSE.txt
+mv ./template/LICENSE.md .
 
-## TODO: clean readme
+## Clean readme
+cat > README.md <<EOF
+## Description
+EOF
 
-## TODO: remove template dir
+## Remove template dir
+rm -rf ./template
