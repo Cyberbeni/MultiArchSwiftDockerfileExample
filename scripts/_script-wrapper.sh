@@ -8,7 +8,7 @@
 # pushd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null
 # SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
 #
-# DOCKER_IMAGE="docker.io/cyberbeni/swift-builder:latest"
+# DOCKER_IMAGE="docker.io/swift:latest"
 # PROCESS="swift ldd" # can be an empty string if always have to be run inside container
 #
 # do_it() {

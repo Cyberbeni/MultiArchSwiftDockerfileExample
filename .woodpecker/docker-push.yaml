@@ -1,5 +1,7 @@
 variables:
-  - &IMAGE_NAME "docker.io/cyberbeni/multi-arch-swift-dockerfile-example"
+  - &IMAGE_NAME
+    - "codeberg.org/cyberbeni/multi-arch-swift-dockerfile-example"
+    - "docker.io/cyberbeni/multi-arch-swift-dockerfile-example"
 
 labels:
   backend: local
@@ -26,6 +28,10 @@ steps:
     image: plugin-docker-buildx
     settings:
       logins:
+        - registry: codeberg.org
+          username: ${CI_REPO_OWNER}
+          password:
+            from_secret: PACKAGE_REGISTRY_ACCESS_TOKEN
         - registry: docker.io
           username:
             from_secret: DOCKERHUB_USER
