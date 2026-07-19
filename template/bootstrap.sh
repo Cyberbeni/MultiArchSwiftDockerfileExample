@@ -3,13 +3,38 @@
 set -euo pipefail
 pushd "$(dirname "${BASH_SOURCE[0]}")/.." > /dev/null
 
-## TODO: executalbe/library
-## if executable -> assert linked libraries?
-## if executable -> swift-service-lifecycle?
-## if executable -> CBLogging?
-## if library -> remove docker, remove assert linked
+## Executalbe/library
+echo "Choose project type:"
+echo "1 - Executable"
+echo "2 - Library"
+## TODO: remove other target from Package.swift
+while : ; do
+	read -r -p "> " -n 1 k <&1
+	if [[ $k = 1 ]] ; then
+		printf "\nSetting up executable project.\n"
+		rm -rf ./Sources/ExampleLib
+		rm ./.woodpecker/package-push.yaml
+		break
+	elif [[ $k = 2 ]] ; then
+		printf "\nSetting up library project.\n"
+		rm -rf ./Sources/ExampleApp
+		rm ./Dockerfile ./dockerignore ./scripts/assert-linked-libraries.sh ./scripts/build-release.sh ./.woodpecker/docker-push.yaml
+		break
+	fi
+done
 
-## TODO: project name
+exit 0
+
+## Project name
+read -r -p $'Enter project name:\n> ' PROJECT_NAME
+if [ -d ./Sources/ExampleApp ]; then
+	mv ./Sources/ExampleApp "./Sources/$PROJECT_NAME"
+fi
+if [ -d ./Sources/ExampleLib ]; then
+	mv ./Sources/ExampleLib "./Sources/$PROJECT_NAME"
+fi
+sed -i "s#ExampleApp#${PROJECT_NAME}#" ./Package.swift
+sed -i "s#ExampleLib#${PROJECT_NAME}#" ./Package.swift
 
 ## License
 YEAR=$(date +%Y)

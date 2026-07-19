@@ -11,6 +11,10 @@ let package = Package(
 			name: "ExampleApp",
 			targets: ["ExampleApp"],
 		),
+		.library(
+			name: "ExampleLib",
+			targets: ["ExampleLib"],
+		),
 	],
 	dependencies: [
 		// Plugins:
@@ -28,6 +32,15 @@ let package = Package(
 			],
 			linkerSettings: [
 				.unsafeFlags(["-Xlinker", "-s"], .when(configuration: .release)), // STRIP_STYLE = all
+			],
+		),
+		.target(
+			name: "ExampleLib",
+			dependencies: [
+			],
+			swiftSettings: [
+				.unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
+				.enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 			],
 		),
 	],
