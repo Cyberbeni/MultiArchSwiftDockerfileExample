@@ -52,6 +52,9 @@ if [ -d ./Sources/ExampleLib ]; then
 fi
 sed -i "s#ExampleApp#${TARGET_NAME}#" ./Package.swift
 sed -i "s#ExampleLib#${TARGET_NAME}#" ./Package.swift
+if [ -f ./Dockerfile ]; then
+	sed -i "s#ExampleApp#${TARGET_NAME}#" ./Dockerfile
+fi
 
 ## License
 YEAR=$(date +%Y)
