@@ -22,7 +22,7 @@ while : ; do
 			read -r -p "> " -n 1 k <&1
 			if [[ $k = 1 ]] ; then
 				echo ""
-				read -r -p $'Enter container image name (allowed characters: lowercase letters, digits, dashes):\n> ' CONTAINER_IMAGE_NAME
+				read -r -p $'Enter container image name (must match regex: "^[a-z0-9][a-z0-9_.-]+$"):\n> ' CONTAINER_IMAGE_NAME
 				sed -i "s#multi-arch-swift-dockerfile-example#${CONTAINER_IMAGE_NAME}#" ./.woodpecker/docker-push.yaml
 				break
 			elif [[ $k = 2 ]] ; then
@@ -42,16 +42,16 @@ while : ; do
 	fi
 done
 
-## Project name
-read -r -p $'Enter project name:\n> ' PROJECT_NAME
+## Target name
+read -r -p $'Enter name of primary package target:\n> ' TARGET_NAME
 if [ -d ./Sources/ExampleApp ]; then
-	mv ./Sources/ExampleApp "./Sources/$PROJECT_NAME"
+	mv ./Sources/ExampleApp "./Sources/$TARGET_NAME"
 fi
 if [ -d ./Sources/ExampleLib ]; then
-	mv ./Sources/ExampleLib "./Sources/$PROJECT_NAME"
+	mv ./Sources/ExampleLib "./Sources/$TARGET_NAME"
 fi
-sed -i "s#ExampleApp#${PROJECT_NAME}#" ./Package.swift
-sed -i "s#ExampleLib#${PROJECT_NAME}#" ./Package.swift
+sed -i "s#ExampleApp#${TARGET_NAME}#" ./Package.swift
+sed -i "s#ExampleLib#${TARGET_NAME}#" ./Package.swift
 
 ## License
 YEAR=$(date +%Y)
