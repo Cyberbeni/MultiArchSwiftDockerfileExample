@@ -18,6 +18,8 @@ RUN --mount=type=cache,target=/workspace/.build,id=build-$TARGETPLATFORM \
 	mkdir -p dist && \
 	cp .build/release/ExampleApp dist
 
-FROM scratch AS release
-COPY --from=swift-build /workspace/dist/ExampleApp /usr/local/bin/swift-example
-ENTRYPOINT ["/usr/local/bin/swift-example"]
+FROM docker.io/alpine:latest AS release
+RUN apk add --no-cache \
+	tzdata
+COPY --from=swift-build /workspace/dist/ExampleApp /usr/local/bin/ExampleApp
+ENTRYPOINT ["/usr/local/bin/ExampleApp"]

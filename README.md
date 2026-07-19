@@ -1,17 +1,11 @@
 ## Description
 
-This is an example on how to set up building a multi-architecture docker image using the new Swift Static Linux SDK introduced along with Swift 6.0.
+This is the template I use for setting up new Swift projects.
 
 ## TimeZone support
 
-Supporting different time zones requires the `tzdata` package. By default this template is using an empty container as the base, the recommended base for only installing a couple smaller packages is `alpine`. This supports both passing the `TZ` environment variable and mounting `/etc/localtime` to set the desired default for classes like `DateFormatter`.
-
-```diff
-- FROM scratch AS release
-+ FROM alpine AS release
-+ RUN apk add --no-cache tzdata
-```
+This setup supports both passing the `TZ` environment variable and mounting `/etc/localtime` to set the desired default for classes like `DateFormatter`. This needs the full `Foundation` to be imported (as of Swift 6.3.3) or you have to fall back to using locatime_r, like [here](https://codeberg.org/Cyberbeni/CBLogging/src/commit/63d7151f590d9c1195cb4e3c2e0de1ca9a00f17f/Sources/CBLogging/Formatter.swift#L27-L36).
 
 ## Locale support
 
-As of Swift 6.0.1, `Locale.current` is hardcoded to be `en_001` on Linux. Manually passing a `Locale` instance to everything that uses it seems to be the only solution for using a custom `Locale` currently.
+As of Swift 6.3.3, `Locale.current` is hardcoded to be `en_001` on Linux. Manually passing a `Locale` instance to everything that uses it seems to be the only solution for using a custom `Locale` currently.
