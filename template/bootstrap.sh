@@ -23,11 +23,11 @@ while : ; do
 			if [[ $k = 1 ]] ; then
 				echo ""
 				read -r -p $'Enter container image name (must match regex: "^[a-z0-9][a-z0-9_.-]+$"):\n> ' CONTAINER_IMAGE_NAME
-				sed -i "s#multi-arch-swift-dockerfile-example#${CONTAINER_IMAGE_NAME}#" ./.woodpecker/docker-push.yaml
+				sed -i "s#multi-arch-swift-dockerfile-example#${CONTAINER_IMAGE_NAME}#g" ./.woodpecker/docker-push.yaml
 				break
 			elif [[ $k = 2 ]] ; then
 				printf "\nRemoving Docker related files.\n"
-				rm ./Dockerfile ./.dockerignore ./.woodpecker/docker-push.yaml
+				rm ./Dockerfile ./.dockerignore ./scripts/assert-linked-libraries.sh ./scripts/build-release.sh ./.woodpecker/docker-push.yaml
 				break
 			fi
 		done
@@ -50,17 +50,20 @@ fi
 if [ -d ./Sources/ExampleLib ]; then
 	mv ./Sources/ExampleLib "./Sources/$TARGET_NAME"
 fi
-sed -i "s#ExampleApp#${TARGET_NAME}#" ./Package.swift
-sed -i "s#ExampleLib#${TARGET_NAME}#" ./Package.swift
+sed -i "s#ExampleApp#${TARGET_NAME}#g" ./Package.swift
+sed -i "s#ExampleLib#${TARGET_NAME}#g" ./Package.swift
+if [ -f ./scripts/build-release.sh ]; then
+	sed -i "s#ExampleApp#${TARGET_NAME}#g" ./scripts/build-release.sh
+fi
 if [ -f ./Dockerfile ]; then
-	sed -i "s#ExampleApp#${TARGET_NAME}#" ./Dockerfile
+	sed -i "s#ExampleApp#${TARGET_NAME}#g" ./Dockerfile
 fi
 
 ## License
 YEAR=$(date +%Y)
 NAME=$(git config --get user.name)
-sed -i "s#__YEAR__#${YEAR}#" ./template/LICENSE.md
-sed -i "s#__NAME__#${NAME}#" ./template/LICENSE.md
+sed -i "s#__YEAR__#${YEAR}#g" ./template/LICENSE.md
+sed -i "s#__NAME__#${NAME}#g" ./template/LICENSE.md
 rm UNLICENSE.txt
 mv ./template/LICENSE.md .
 
