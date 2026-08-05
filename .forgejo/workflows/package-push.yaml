@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: https://codeberg.org/Cyberbeni/actions-checkout@v1
-      - name: PR Checks
+      - name: Push Swift package to registry
         shell: bash
         env:
           PACKAGE_REGISTRY_ACCESS_TOKEN: ${{ secrets.PACKAGE_REGISTRY_ACCESS_TOKEN }}
