@@ -1,0 +1,19 @@
+name: "Push Swift package to registry"
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  swift-package-push:
+    runs-on: local
+    steps:
+      - name: Checkout
+        uses: https://codeberg.org/Cyberbeni/actions-checkout@v1
+      - name: PR Checks
+        shell: bash
+        env:
+          PACKAGE_REGISTRY_ACCESS_TOKEN: ${{ secrets.PACKAGE_REGISTRY_ACCESS_TOKEN }}
+        run: |
+          "$CI_SCRIPTS/swift/package-push.sh"
