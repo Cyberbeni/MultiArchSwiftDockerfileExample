@@ -12,7 +12,7 @@ while : ; do
 	if [[ $k = 1 ]] ; then
 		printf "\nSetting up executable project.\n"
 		rm -rf ./Sources/ExampleLib
-		rm ./.woodpecker/package-push.yaml
+		rm ./.forgejo/workflows/package-push.yaml
 		perl -0pe "s#\t\t\.library\(\n(.*\n)*?\t\t\),\n##g" -i ./Package.swift
 		perl -0pe "s#\t\t\.target\(\n(.*\n)*?\t\t\),\n##g" -i ./Package.swift
 		echo "Keep Docker setup?"
@@ -23,11 +23,11 @@ while : ; do
 			if [[ $k = 1 ]] ; then
 				echo ""
 				read -r -p $'Enter container image name (must match regex: "^[a-z0-9][a-z0-9_.-]+$"):\n> ' CONTAINER_IMAGE_NAME
-				sed -i "s#multi-arch-swift-dockerfile-example#${CONTAINER_IMAGE_NAME}#g" ./.woodpecker/docker-push.yaml
+				sed -i "s#multi-arch-swift-dockerfile-example#${CONTAINER_IMAGE_NAME}#g" ./.forgejo/workflows/docker-push.yaml
 				break
 			elif [[ $k = 2 ]] ; then
 				printf "\nRemoving Docker related files.\n"
-				rm ./Dockerfile ./.dockerignore ./scripts/assert-linked-libraries.sh ./scripts/build-release.sh ./.woodpecker/docker-push.yaml
+				rm ./Dockerfile ./.dockerignore ./scripts/assert-linked-libraries.sh ./scripts/build-release.sh ./.forgejo/workflows/docker-push.yaml
 				break
 			fi
 		done
@@ -35,7 +35,7 @@ while : ; do
 	elif [[ $k = 2 ]] ; then
 		printf "\nSetting up library project.\n"
 		rm -rf ./Sources/ExampleApp
-		rm ./Dockerfile ./.dockerignore ./scripts/assert-linked-libraries.sh ./scripts/build-release.sh ./.woodpecker/docker-push.yaml
+		rm ./Dockerfile ./.dockerignore ./scripts/assert-linked-libraries.sh ./scripts/build-release.sh ./.forgejo/workflows/docker-push.yaml
 		perl -0pe "s#\t\t\.executable\(\n(.*\n)*?\t\t\),\n##g" -i ./Package.swift
 		perl -0pe "s#\t\t\.executableTarget\(\n(.*\n)*?\t\t\),\n##g" -i ./Package.swift
 		break
