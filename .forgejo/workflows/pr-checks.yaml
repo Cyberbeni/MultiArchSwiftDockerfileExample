@@ -8,4 +8,5 @@ on:
 
 jobs:
   swift-pr-checks:
+    runs-on: local
     uses: https://codeberg.org/Cyberbeni/workflows/.forgejo/workflows/swift-pr-checks.yaml@master
