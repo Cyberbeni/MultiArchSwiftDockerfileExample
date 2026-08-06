@@ -8,11 +8,4 @@ on:
 
 jobs:
   swift-pr-checks:
-    runs-on: local
-    steps:
-      - name: Checkout
-        uses: https://codeberg.org/Cyberbeni/actions-checkout@v1
-      - name: PR Checks
-        shell: bash
-        run: |
-          "$CI_SCRIPTS/swift/pr-checks.sh"
+    uses: https://codeberg.org/Cyberbeni/workflows/.forgejo/workflows/swift/pr-checks.yaml@master
