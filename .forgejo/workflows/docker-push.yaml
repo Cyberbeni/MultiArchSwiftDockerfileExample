@@ -2,8 +2,8 @@ name: "Push container to registry"
 
 on:
   pull_request:
-    # paths:
-    #   - Dockerfile
+    paths:
+      - Dockerfile
   push:
     tags:
       - "v*.*.*"
