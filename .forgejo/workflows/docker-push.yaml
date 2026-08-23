@@ -2,8 +2,7 @@ name: "Push container to registry"
 
 on:
   pull_request:
-    paths:
-      - Dockerfile
+    types: [labeled, opened, synchronize, reopened]
   push:
     tags:
       - "v*.*.*"
@@ -11,6 +10,7 @@ on:
 jobs:
   docker-push:
     runs-on: local
+    if: (forgejo.event_name != 'pull_request') || contains(forgejo.event.pull_request.labels.*.name, 'build')
     steps:
       - name: Checkout
         uses: https://codeberg.org/Cyberbeni/actions-checkout@v1
