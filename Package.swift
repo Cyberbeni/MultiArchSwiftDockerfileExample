@@ -17,8 +17,6 @@ let package = Package(
 		),
 	],
 	dependencies: [
-		// Plugins:
-		.package(url: "https://codeberg.org/Cyberbeni/SwiftFormat-mirror", from: "0.60.1"),
 	],
 	targets: [
 		.executableTarget(
@@ -42,6 +40,11 @@ let package = Package(
 				.unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
 				.enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 			],
+		),
+		.binaryTarget(
+			name: "swiftformat",
+			url: "https://github.com/nicklockwood/SwiftFormat/releases/download/0.62.1/swiftformat.artifactbundle.zip",
+			checksum: "6595f3121e657438a24dabd9f8fecb648d3f362e5106df0968f734f5863fe404",
 		),
 	],
 )
