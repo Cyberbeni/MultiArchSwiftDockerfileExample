@@ -5,7 +5,7 @@ This is the template I use for setting up new Swift projects.
 ## Usage
 
 - Click use template
-- Select `Git content` and `Branch protection`
+- Select `Git content` and `Branch protection`. If Docker based project, also select `Issue labels`.
 - Run `./template/bootstrap.sh`, fill in the rest of `README.md`
 - Commit & Push
 - Settings -> Branches -> Edit -> Disable push
