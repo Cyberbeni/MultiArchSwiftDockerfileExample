@@ -28,15 +28,15 @@ do_it() {
 
 	case "$(uname)" in
 		Darwin)
-			SWIFTFORMAT="./.build/artifacts/*/swiftformat/swiftformat.artifactbundle/swiftformat-*-macos/bin/swiftformat"
+			SWIFTFORMAT="$(find ./.build/artifacts -type f -name swiftformat)"
 			;;
 		Linux)
 			case "$(uname -m)" in
 				x86_64)
-					SWIFTFORMAT="./.build/artifacts/*/swiftformat/swiftformat.artifactbundle/swiftformat-*-linux-gnu/bin/swiftformat_linux"
+					SWIFTFORMAT="$(find ./.build/artifacts -type f -name swiftformat_linux)"
 					;;
 				aarch64)
-					SWIFTFORMAT="./.build/artifacts/*/swiftformat/swiftformat.artifactbundle/swiftformat-*-linux-gnu/bin/swiftformat_linux_aarch64"
+					SWIFTFORMAT="$(find ./.build/artifacts -type f -name swiftformat_linux_aarch64)"
 					;;
 				*)
 					echo "Unsupported architecture"
@@ -51,11 +51,11 @@ do_it() {
 	esac
 
 	if (( DO_LINT != 0 )); then
-		$SWIFTFORMAT --cache "$CACHE" --lint .
+		"$SWIFTFORMAT" --cache "$CACHE" --lint .
 	else
-		$SWIFTFORMAT --cache "$CACHE" .
+		"$SWIFTFORMAT" --cache "$CACHE" .
 		# https://github.com/nicklockwood/SwiftFormat/issues/1904
-		$SWIFTFORMAT --cache "$CACHE" --lint --lenient .
+		"$SWIFTFORMAT" --cache "$CACHE" --lint --lenient .
 	fi
 }
 
