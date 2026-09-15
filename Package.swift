@@ -18,7 +18,7 @@ let package = Package(
 	],
 	dependencies: [
 		// Plugins:
-		.package(url: "https://codeberg.org/Cyberbeni/SwiftFormat-mirror", from: "0.60.1"),
+		.package(url: "https://codeberg.org/Cyberbeni/SwiftFormat-artifactbundle", from: "0.63.0"),
 	],
 	targets: [
 		.executableTarget(

@@ -16,31 +16,40 @@ do_it() {
 				shift
 				;;
 			*)
-      		echo "Unknown option $1"
-      		exit 1
+				echo "Unknown option $1"
+				exit 1
 				;;
 		esac
 	done
 
-	SWIFTFORMAT="./.build/debug/swiftformat"
+	swift package resolve --only-use-versions-from-resolved-file
+
 	CACHE="./.build/swiftformat-cache.json"
 
-	# Replicate `make` behaviour in docker, `swift build` can easily take 5+ seconds even when no operations are needed.
-	# CI will always do fresh clone, so Package.swift/resolved will always be newer than the cache unless we are running parallel jobs.
-	# And since we might restore a cache from a different Package.resolved, we want to ensure build is up to date in this case too.
-	NEEDS_REBUILD=1
-	if [ -z "$CI" ] && which stat > /dev/null 2>&1 && [ -f "$SWIFTFORMAT" ]; then
-		PRODUCT_MTIME=$(stat -c %Y "$SWIFTFORMAT")
-		PACKAGE_SWIFT_MTIME=$(stat -c %Y "./Package.swift")
-		PACKAGE_RESOLVED_MTIME=$(stat -c %Y "./Package.resolved")
-		if (( PRODUCT_MTIME > PACKAGE_SWIFT_MTIME && PRODUCT_MTIME > PACKAGE_RESOLVED_MTIME )); then
-			NEEDS_REBUILD=0
-		fi
-	fi
-	if (( NEEDS_REBUILD != 0 )); then
-		swift build --product swiftformat
-		touch "$SWIFTFORMAT"
-	fi
+	case "$(uname)" in
+		Darwin)
+			SWIFTFORMAT="$(find ./.build/artifacts/swiftformat-artifactbundle -type f -name swiftformat)"
+			;;
+		Linux)
+			case "$(uname -m)" in
+				x86_64)
+					SWIFTFORMAT="$(find ./.build/artifacts/swiftformat-artifactbundle -type f -name swiftformat_linux)"
+					;;
+				aarch64)
+					SWIFTFORMAT="$(find ./.build/artifacts/swiftformat-artifactbundle -type f -name swiftformat_linux_aarch64)"
+					;;
+				*)
+					echo "Unsupported architecture"
+					exit 1
+					;;
+			esac
+			;;
+		*)
+			echo "Unsupported OS"
+			exit 1
+			;;
+	esac
+
 	if (( DO_LINT != 0 )); then
 		"$SWIFTFORMAT" --cache "$CACHE" --lint .
 	else
