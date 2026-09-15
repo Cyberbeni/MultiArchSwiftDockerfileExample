@@ -17,6 +17,8 @@ let package = Package(
 		),
 	],
 	dependencies: [
+		// Plugins:
+		.package(url: "https://codeberg.org/Cyberbeni/SwiftFormat-artifactbundle", from: "0.63.0"),
 	],
 	targets: [
 		.executableTarget(
@@ -40,11 +42,6 @@ let package = Package(
 				.unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=100"], .when(configuration: .debug)),
 				.enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 			],
-		),
-		.binaryTarget(
-			name: "swiftformat",
-			url: "https://github.com/nicklockwood/SwiftFormat/releases/download/0.63.0/swiftformat.artifactbundle.zip",
-			checksum: "d3c350a6655c0f687e2c23aac3e777b35345313a6428bb36b915fe7d9840ec78",
 		),
 	],
 )

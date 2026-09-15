@@ -1,0 +1,15 @@
+{
+  "originHash" : "5fd3bf3cd5baf373352781a9be57b686f632e8fecdfd1af19c58b13532e58f8c",
+  "pins" : [
+    {
+      "identity" : "swiftformat-artifactbundle",
+      "kind" : "remoteSourceControl",
+      "location" : "https://codeberg.org/Cyberbeni/SwiftFormat-artifactbundle",
+      "state" : {
+        "revision" : "444b56bfe1ff3103b0deec900571e09599b245be",
+        "version" : "0.63.0"
+      }
+    }
+  ],
+  "version" : 3
+}

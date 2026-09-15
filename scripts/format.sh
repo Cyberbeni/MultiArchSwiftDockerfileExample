@@ -28,15 +28,15 @@ do_it() {
 
 	case "$(uname)" in
 		Darwin)
-			SWIFTFORMAT="$(find ./.build/artifacts -type f -name swiftformat)"
+			SWIFTFORMAT="$(find ./.build/artifacts/swiftformat-artifactbundle -type f -name swiftformat)"
 			;;
 		Linux)
 			case "$(uname -m)" in
 				x86_64)
-					SWIFTFORMAT="$(find ./.build/artifacts -type f -name swiftformat_linux)"
+					SWIFTFORMAT="$(find ./.build/artifacts/swiftformat-artifactbundle -type f -name swiftformat_linux)"
 					;;
 				aarch64)
-					SWIFTFORMAT="$(find ./.build/artifacts -type f -name swiftformat_linux_aarch64)"
+					SWIFTFORMAT="$(find ./.build/artifacts/swiftformat-artifactbundle -type f -name swiftformat_linux_aarch64)"
 					;;
 				*)
 					echo "Unsupported architecture"
